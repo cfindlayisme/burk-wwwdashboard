@@ -122,6 +122,7 @@ def getmeterlabeldata(id):
     result = []
 
     # JS btoa used in case weird stuff is going on with the label
+    # 168 hours = 7 days, which is the amount of data points we send
     doc = db.collection('meters').where(u'label', u'==', base64.b64decode(id).decode('utf-8')).order_by('timestamp', direction=firestore.Query.DESCENDING).limit(168).get()
     for x in doc:
         result.append(x.to_dict())
