@@ -104,6 +104,13 @@ def getmeterlabels():
     for key in doc_dict:
         result.append({'label':doc_dict[key]})
 
+    # Main TX's amperage
+    doc = db.collection(u'settings').document(u'maintxamps').get()
+    doc_dict = doc.to_dict()
+
+    for key in doc_dict:
+        result.append({'label':doc_dict[key]})
+
     return jsonify(result)
 
 @app.route('/get/meters/label/<id>')
